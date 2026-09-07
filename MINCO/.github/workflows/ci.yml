@@ -29,7 +29,7 @@ jobs:
       - name: Regenerate public contract registry
         run: >-
           python -c "from src.services.contract_registry import build_service_contract_registry;
-          r=build_service_contract_registry(); assert r['schema_count'] == 18; print(r)"
+          r=build_service_contract_registry(); assert r['schema_count'] == 20; print(r)"
       - name: Generate release-evidence artifact
         run: python scripts/generate_release_evidence.py
       - name: Validate release-evidence attestation
