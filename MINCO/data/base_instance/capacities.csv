@@ -1,0 +1,7 @@
+hospital_id,resource,base_capacity
+H1,ICU,40
+H1,Ward,140
+H2,ICU,20
+H2,Ward,90
+H3,ICU,10
+H3,Ward,60

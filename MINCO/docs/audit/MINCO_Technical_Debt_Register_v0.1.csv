@@ -1,0 +1,25 @@
+debt_id,severity,area,issue,classification,confidence,required_stabilization
+TD-001,Critical,Testing,All automated test files are empty; pytest collects no tests.,Broken,High confidence,"Write executable unit, integration, API, optimization-feasibility, and seeded-simulation tests before feature expansion."
+TD-002,Critical,API,The documented uvicorn target points to empty src/api/main.py; app code is in __init__.py.,Broken,High confidence,Move app construction to src/api/main.py and add an import/health smoke test.
+TD-003,Critical,Reproducibility,Dependencies are unpinned and no Python/Gurobi version or license setup is defined.,Unverified,High confidence,"Create pyproject/lock files, record Python and solver versions, and add a license preflight."
+TD-004,High,Data,All supplied operational inputs are synthetic; no real-data provenance or external validation exists.,Unverified,High confidence,Document synthetic generation and clearly separate benchmark evidence from real-world claims.
+TD-005,High,Data,The literature-calibrated configuration is explicitly a template without citations.,Unverified,High confidence,Remove the label from claims until parameters and sources are documented and reproduced.
+TD-006,High,Digital twin,The current simulator is not DES and does not reconstruct state from operational events.,Partially Implemented,High confidence,Rename it accurately and define the future event/state contract before extending it.
+TD-007,High,Optimization,Robust policies robustify arrivals outside the model rather than implementing formal robust optimization.,Partially Implemented,High confidence,Use accurate naming or formulate explicit uncertainty-set/stochastic models.
+TD-008,High,Machine learning,Random train/test splitting is used for next-period forecasting.,Partially Implemented,High confidence,"Replace with temporal, grouped, and scenario-held-out validation."
+TD-009,High,Repository hygiene,Approximately 2.0 GB of pickle files and 92 pyc files are inside the archive.,Broken,High confidence,Move models/results to versioned artifacts and exclude generated files from source control.
+TD-010,High,MLOps,"CSV model registries contain paths but no hashes, package versions, training-data versions, or signatures.",Partially Implemented,High confidence,Add immutable model metadata and artifact checksums.
+TD-011,High,Runtime,The stored nine-step pipeline required about 10.5 hours; one stage consumed about 10.4 hours.,Validated,High confidence,"Create separate smoke, standard, and full-research execution profiles."
+TD-012,High,Deployment,"No Docker, CI/CD, staging, production, rollback, or health-verification configuration exists.",Planned,High confidence,Do not describe the repository as deployment-ready.
+TD-013,High,Security,"No authentication, authorization, secrets handling, or audit-user identity exists.",Planned,High confidence,Keep the API local/demo-only until access controls are implemented.
+TD-014,Medium,Configuration,"Thresholds, hospital names, event presets, and policy narratives are hard-coded.",Partially Implemented,High confidence,Externalize operational parameters and validate configuration schemas.
+TD-015,Medium,Identity,"MINCO and Meridian naming are inconsistent across code, README, API, and reports.",Broken,High confidence,Choose a canonical product/repository identity and migrate references.
+TD-016,Medium,Code structure,"main.py, notebooks, several package modules, metrics modules, and utility modules are empty.",Planned,High confidence,Remove obsolete placeholders or implement them with explicit issues.
+TD-017,Medium,Data quality,The n10 synthetic transfer-lane table contains duplicate H1-H8 and H8-H1 rows.,Broken,High confidence,Fix the generator and add uniqueness validation.
+TD-018,Medium,Results integrity,Multiple RL rollout files are byte-identical across nominal regime labels.,Unverified,High confidence,Confirm whether fixed-policy regime runs are intentionally identical or mislabeled.
+TD-019,Medium,Documentation,"README references reports/industry_demo/architecture.md, which is absent.",Broken,High confidence,Correct links and add an automated documentation-link check.
+TD-020,Medium,Portability,Stored model paths use Windows separators and environment-specific relative paths.,Broken,High confidence,Use portable path handling and artifact URIs.
+TD-021,Medium,Statistics,Some headline comparisons are descriptive while significance tables show non-significant differences.,Partially Implemented,High confidence,Attach statistical qualification to every published claim.
+TD-022,Medium,Packaging,"The dashboard is a 1,485-line Streamlit module that directly imports analytical services.",Partially Implemented,High confidence,"Separate UI components, service clients, and analytical execution."
+TD-023,Medium,Pickle safety,Model artifacts use pickle without compatibility or trust controls.,Unverified,High confidence,Treat pickles as trusted internal artifacts only; add format/version policy.
+TD-024,Low,Cleanup,One-off repository editing scripts remain at the root.,Obsolete,Medium confidence,Archive or remove after verifying they are no longer needed.

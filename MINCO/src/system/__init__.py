@@ -1,0 +1,1 @@
+"""MINCO package module."""

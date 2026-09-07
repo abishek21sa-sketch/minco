@@ -1,0 +1,7 @@
+hospital_id,resource,safe_utilization
+H1,ICU,0.85
+H1,Ward,0.90
+H2,ICU,0.85
+H2,Ward,0.90
+H3,ICU,0.85
+H3,Ward,0.90

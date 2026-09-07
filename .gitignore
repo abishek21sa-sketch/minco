@@ -1,0 +1,39 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+
+# Runtime artifacts
+results/ops_platform/*.db*
+results/**/*.log
+results/system_pipeline/smoke_report.json
+
+# Large model artifacts are governed outside source control
+results/ai_models/*.pkl
+results/**/*.joblib
+
+# Local exports
+artifacts/
+dist/
+build/
+*.egg-info/
+
+# Flutter workstation local build state
+workstation/.dart_tool/
+workstation/build/
+workstation/windows/flutter/ephemeral/
+workstation/.flutter-plugins*
+
+# Phase-2 operational lake is generated from source events
+results/operational_lake/*.duckdb*
+results/operational_lake/*.parquet

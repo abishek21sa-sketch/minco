@@ -1,0 +1,16 @@
+syntax = "proto3";
+package minco.runtime.v1;
+
+import "google/protobuf/wrappers.proto";
+
+// Phase-2 cross-language contract. JSON payloads remain schema-validated by
+// Pydantic on the Python side while StringValue provides a stable protobuf wire
+// envelope that Dart/Flutter and Python can exchange without REST.
+service MincoRuntime {
+  rpc GetStatus(google.protobuf.StringValue) returns (google.protobuf.StringValue);
+  rpc GetNetworkState(google.protobuf.StringValue) returns (google.protobuf.StringValue);
+  rpc GetScenarioCatalog(google.protobuf.StringValue) returns (google.protobuf.StringValue);
+  rpc OptimizePlan(google.protobuf.StringValue) returns (google.protobuf.StringValue);
+  rpc EvaluateIntervention(google.protobuf.StringValue) returns (google.protobuf.StringValue);
+  rpc ReviewDecision(google.protobuf.StringValue) returns (google.protobuf.StringValue);
+}

@@ -1,0 +1,10 @@
+event_timestamp,hospital_id,event_type,patient_pathway_or_cohort,resource,quantity,source_system,source_mode,unit_id,patient_id,metadata
+2026-08-23T08:00:00-05:00,H1,capacity_change,system,ICU,24,external_demo,file_batch,ICU,,"{\"operation\":\"set\"}"
+2026-08-23T08:00:00-05:00,H1,capacity_change,system,Ward,84,external_demo,file_batch,WARD,,"{\"operation\":\"set\"}"
+2026-08-23T08:05:00-05:00,H1,arrival,c1,ED,1,external_demo,file_batch,ED,P001,"{}"
+2026-08-23T08:11:00-05:00,H1,arrival,c2,ED,1,external_demo,file_batch,ED,P002,"{}"
+2026-08-23T08:33:00-05:00,H1,bed_request,c1,ICU,1,external_demo,file_batch,ICU,P001,"{}"
+2026-08-23T08:38:00-05:00,H1,bed_assigned,c1,ICU,1,external_demo,file_batch,ICU,P001,"{}"
+2026-08-23T09:10:00-05:00,H2,capacity_change,system,ICU,18,external_demo,file_batch,ICU,,"{\"operation\":\"set\"}"
+2026-08-23T09:12:00-05:00,H2,arrival,c3,ED,1,external_demo,file_batch,ED,P003,"{}"
+2026-08-23T10:00:00-05:00,H1,staffing_change,system,ICU,2,external_demo,file_batch,ICU,,"{\"unit\":\"nurse_block\"}"

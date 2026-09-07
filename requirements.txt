@@ -1,0 +1,3 @@
+# Reproducible installation is governed by pyproject.toml.
+# Core API/data dependencies:
+-e .

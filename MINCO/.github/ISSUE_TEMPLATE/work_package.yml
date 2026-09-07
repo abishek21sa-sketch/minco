@@ -1,0 +1,29 @@
+name: Engineering work package
+description: Propose a specification-traceable implementation unit
+title: "[WP]: "
+labels: ["planned"]
+body:
+  - type: input
+    id: level
+    attributes:
+      label: Roadmap level and work package
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Evidence-backed problem
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria and validation gate
+    validations:
+      required: true
+  - type: textarea
+    id: specification
+    attributes:
+      label: MINCO specification sections
+    validations:
+      required: true

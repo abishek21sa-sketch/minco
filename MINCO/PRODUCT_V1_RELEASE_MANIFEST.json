@@ -1,0 +1,92 @@
+{
+  "release": "PRODUCT_V1_RC1",
+  "build_date": "2026-09-04",
+  "root": "MINCO_PRODUCT_V1",
+  "inner_repository": "MINCO",
+  "signature_algorithm": "FLOW-CVaR",
+  "product_port": 8814,
+  "primary_runtime": "Native Flutter/Dart workstation over governed gRPC runtime; FastAPI Command Center at / retained for governance and evidence",
+  "commands": [
+    "RUN_ACCEPTANCE.cmd",
+    "RUN_FORTUNE50_ACCEPTANCE.cmd",
+    "RUN_PRODUCT_ACCEPTANCE.cmd",
+    "RUN_DEMO.cmd",
+    "RUN_APP.cmd",
+    "RUN_NATIVE_WORKSTATION.cmd"
+  ],
+  "hardening_milestone": "NATIVE_WORKSTATION_ACADEMIC_SOLVER_POSTURE_SAFE_SOLVER_FALLBACK_ENTERPRISE_CONTROL_TOWER_ENTERPRISE_IDENTITY_RBAC_OPERATIONS_WORKBENCH_DECISION_PACKET_SCENARIO_COMPARISON_HUMAN_REVIEW_OBSERVABILITY_OPERATIONAL_HISTORY_RUNTIME_PREFLIGHT_RELEASE_SCORECARD_API_KEY_BOUNDARY_LIVE_INGESTION_GATEWAY_TAMPER_EVIDENT_AUDIT_SLO_METRICS_RELEASE_PROVENANCE_SCALED_RESEARCH_TWIN",
+  "engineering_regression": "139 passed, 1 deprecation warning",
+  "container_product_runtime_acceptance": "PASS",
+  "public_contract_registry": {
+    "contract_version": "1.0",
+    "schema_count": 20,
+    "includes": ["AuditIntegrityResponse", "ControlTowerResponse", "DecisionPacketResponse", "DecisionReviewRequest", "DecisionReviewResponse", "EventIngestionRequest", "EventIngestionResponse", "EventIngestionStatusResponse", "HealthResponse", "IdentityResponse", "ObservabilityMetricsResponse", "OperationalHistoryResponse", "ReadinessResponse", "ReleaseEvidenceResponse", "ReleaseReadinessResponse"]
+  },
+  "human_review_workflow": {
+    "review_endpoint": "POST /v1/audit/{run_id}/review",
+    "history_endpoints": ["GET /v1/audit/{run_id}/reviews", "GET /v1/audit/reviews"],
+    "autonomous_execution_permitted": false
+  },
+  "operations_workbench": {
+    "scenario_catalog_endpoint": "GET /v1/scenarios",
+    "evaluation_endpoint": "POST /v1/scenarios/evaluate",
+    "comparison_surfaces": ["baseline", "counterfactual", "delta"],
+    "review_path": "POST /v1/audit/{run_id}/review",
+    "autonomous_execution_permitted": false
+  },
+  "primary_solver_preflight": "Julia executable and JuMP/Gurobi/JSON3 project dependencies are checked before primary-solver selection; SciPy/HiGHS fallback is explicit when unavailable",
+  "solver_license_posture": {
+    "mode": "academic",
+    "use_boundary": "Synthetic replay, research, and educational validation only",
+    "commercial_or_operational_use_permitted": false,
+    "fallback_behavior": "Use independently validated SciPy/HiGHS oracle and label provenance if primary solver is unavailable"
+  },
+  "phase2_backend_acceptance": {
+    "status": "passed",
+    "event_count": 459,
+    "parquet_polars_roundtrip": "PASS",
+    "plan_solver": "Julia/JuMP/Gurobi",
+    "julia_readiness": "ready",
+    "evidence_path": "MINCO/results/validation/phase2_backend_acceptance_report.json"
+  },
+  "scaled_research_twin": {
+    "status": "PASS",
+    "facility_count": 120,
+    "minimum_event_count": 100000,
+    "validated_event_count": 121239,
+    "operating_modes": ["normal", "lower_demand", "respiratory_surge", "covid_like", "flu_like", "mixed_surge"],
+    "optimizer_scale_probe": "24 hospitals x 4 periods x 8 scenarios input contract validated",
+    "ml_validation": "Calibrated ICU-escalation classifier temporal holdout: ROC-AUC 0.653, PR-AUC 0.347, Brier 0.165 vs prevalence baseline 0.174",
+    "acceptance_report": "MINCO/results/validation/scaled_research_twin/scaled_research_twin_acceptance_report.json",
+    "claim_boundary": "Synthetic research/replay only; public provider metadata calibrates facility strata and does not represent observed capacity, occupancy, patient data, or clinical outcomes."
+  },
+  "public_data_calibration": {
+    "cms_hospital_directory_api": "https://data.cms.gov/provider-data/api/1/datastore/query/xubh-q36u/0",
+    "cdc_respiratory_surveillance": "https://www.cdc.gov/resp-net/dashboard/index.html",
+    "cdc_flu_surveillance": "https://www.cdc.gov/fluview/overview/fluview-interactive.html",
+    "integration_posture": "Optional local snapshots; offline deterministic fallback; no patient-level data imported"
+  },
+  "operational_history_endpoint": "GET /v1/operational-history",
+  "release_readiness_endpoint": "GET /v1/release-readiness",
+  "release_evidence_endpoint": "GET /v1/release-evidence",
+  "decision_packet_endpoint": "GET /v1/decision-packets/{run_id}",
+  "identity_endpoint": "GET /v1/identity",
+  "authorization_policy": {
+    "roles": ["viewer", "analyst", "reviewer", "admin"],
+    "review_minimum_role": "reviewer",
+    "credential_config": "MINCO_API_KEYS JSON mapping credentials to subject and role; legacy MINCO_API_KEY remains supported",
+    "autonomous_execution_permitted": false
+  },
+  "release_evidence_artifact": "MINCO/results/validation/release_evidence_attestation.json",
+  "audit_integrity_endpoint": "GET /v1/audit/integrity",
+  "observability_metrics_endpoints": ["GET /v1/observability/metrics", "GET /metrics"],
+  "operational_events_endpoints": ["GET /v1/operational-events/status", "POST /v1/operational-events/ingest"],
+  "ci_governance_gates": ["Phase 2 backend acceptance", "Release-readiness scorecard consistency", "Release-evidence attestation consistency"],
+  "evidence": [
+    "FLOW_CVAR_SIGNATURE_EVIDENCE=9/9",
+    "FLOW_CVAR_PRODUCT_EVIDENCE=9/9",
+    "FLOW_CVAR_SIGNATURE_SENSITIVITY=18"
+  ],
+  "windows_status": "PASS on engineering baseline and product-runtime Windows confirmation",
+  "claim_boundary": "Engineering/product evidence only unless an underlying source explicitly establishes a stronger class. Human review remains required where the decision contract says so."
+}

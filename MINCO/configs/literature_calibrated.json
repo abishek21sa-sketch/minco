@@ -1,0 +1,90 @@
+{
+  "mode_name": "literature_calibrated",
+  "description": "Template literature-calibrated mode. Replace these values with the exact estimates and references you choose to cite in the paper.",
+  "arrivals": {
+    "default_multiplier": 1.1,
+    "by_hospital_cohort": {
+      "H1|c1": 1.00,
+      "H1|c2": 1.10,
+      "H1|c3": 1.15,
+      "H1|c4": 1.00,
+      "H2|c1": 1.00,
+      "H2|c2": 1.12,
+      "H2|c3": 1.18,
+      "H2|c4": 1.00,
+      "H3|c1": 1.00,
+      "H3|c2": 1.08,
+      "H3|c3": 1.20,
+      "H3|c4": 1.00
+    }
+  },
+  "capacities": {
+    "base_capacity_overrides": {
+      "H1|ICU": 30,
+      "H2|ICU": 16,
+      "H3|ICU": 7
+    },
+    "safe_capacity_ratio": 0.85,
+    "safe_capacity_overrides": {
+      "H1|ICU": 26,
+      "H2|ICU": 14,
+      "H3|ICU": 6
+    },
+    "max_surge_overrides": {
+      "H1|ICU": 5,
+      "H2|ICU": 3,
+      "H3|ICU": 2
+    }
+  },
+  "transfer_lanes": {
+    "default_allowed": 1,
+    "lane_overrides": {
+      "H1|H2": 3,
+      "H1|H3": 2,
+      "H2|H1": 4,
+      "H2|H3": 2,
+      "H3|H1": 4,
+      "H3|H2": 3
+    }
+  },
+  "transitions": {
+    "overrides": [
+      {
+        "cohort": "c3",
+        "from_state": "I",
+        "to_state": "I",
+        "probability": 0.72
+      },
+      {
+        "cohort": "c3",
+        "from_state": "I",
+        "to_state": "S",
+        "probability": 0.22
+      },
+      {
+        "cohort": "c3",
+        "from_state": "I",
+        "to_state": "D",
+        "probability": 0.06
+      },
+      {
+        "cohort": "c2",
+        "from_state": "W",
+        "to_state": "W",
+        "probability": 0.62
+      },
+      {
+        "cohort": "c2",
+        "from_state": "W",
+        "to_state": "R",
+        "probability": 0.23
+      },
+      {
+        "cohort": "c2",
+        "from_state": "W",
+        "to_state": "D",
+        "probability": 0.15
+      }
+    ]
+  }
+}

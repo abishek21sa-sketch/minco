@@ -1,0 +1,53 @@
+{
+  "release": "PRODUCT_V1_RC1",
+  "build_date": "2026-09-04",
+  "root": "MINCO_PRODUCT_V1",
+  "inner_repository": "MINCO",
+  "signature_algorithm": "FLOW-CVaR",
+  "product_port": 8814,
+  "primary_runtime": "Governed FastAPI service with executive Command Center at /",
+  "commands": [
+    "RUN_ACCEPTANCE.cmd",
+    "RUN_ENTERPRISE_ACCEPTANCE.cmd",
+    "RUN_PRODUCT_ACCEPTANCE.cmd",
+    "RUN_DEMO.cmd",
+    "RUN_APP.cmd"
+  ],
+  "hardening_milestone": "ENTERPRISE_CONTROL_TOWER_HUMAN_REVIEW_OBSERVABILITY_OPERATIONAL_HISTORY_RUNTIME_PREFLIGHT_RELEASE_SCORECARD_API_KEY_BOUNDARY_LIVE_INGESTION_GATEWAY_TAMPER_EVIDENT_AUDIT_SLO_METRICS_AND_RELEASE_PROVENANCE",
+  "engineering_regression": "131 passed, 3 Gurobi-only skipped in container (previously exercised on Windows)",
+  "container_product_runtime_acceptance": "PASS",
+  "public_contract_registry": {
+    "contract_version": "1.0",
+    "schema_count": 18,
+    "includes": ["AuditIntegrityResponse", "ControlTowerResponse", "DecisionReviewRequest", "DecisionReviewResponse", "EventIngestionRequest", "EventIngestionResponse", "EventIngestionStatusResponse", "HealthResponse", "ObservabilityMetricsResponse", "OperationalHistoryResponse", "ReadinessResponse", "ReleaseEvidenceResponse", "ReleaseReadinessResponse"]
+  },
+  "human_review_workflow": {
+    "review_endpoint": "POST /v1/audit/{run_id}/review",
+    "history_endpoints": ["GET /v1/audit/{run_id}/reviews", "GET /v1/audit/reviews"],
+    "autonomous_execution_permitted": false
+  },
+  "primary_solver_preflight": "Julia executable and JuMP/Gurobi/JSON3 project dependencies are checked before primary-solver selection",
+  "phase2_backend_acceptance": {
+    "status": "passed",
+    "event_count": 459,
+    "parquet_polars_roundtrip": "PASS",
+    "plan_solver": "SciPy/HiGHS verification oracle",
+    "julia_readiness": "dependencies_unavailable",
+    "evidence_path": "MINCO/results/validation/phase2_backend_acceptance_report.json"
+  },
+  "operational_history_endpoint": "GET /v1/operational-history",
+  "release_readiness_endpoint": "GET /v1/release-readiness",
+  "release_evidence_endpoint": "GET /v1/release-evidence",
+  "release_evidence_artifact": "MINCO/results/validation/release_evidence_attestation.json",
+  "audit_integrity_endpoint": "GET /v1/audit/integrity",
+  "observability_metrics_endpoints": ["GET /v1/observability/metrics", "GET /metrics"],
+  "operational_events_endpoints": ["GET /v1/operational-events/status", "POST /v1/operational-events/ingest"],
+  "ci_governance_gates": ["Phase 2 backend acceptance", "Release-readiness scorecard consistency", "Release-evidence attestation consistency"],
+  "evidence": [
+    "FLOW_CVAR_SIGNATURE_EVIDENCE=9/9",
+    "FLOW_CVAR_PRODUCT_EVIDENCE=9/9",
+    "FLOW_CVAR_SIGNATURE_SENSITIVITY=18"
+  ],
+  "windows_status": "PASS on engineering baseline and product-runtime Windows confirmation",
+  "claim_boundary": "Engineering/product evidence only unless an underlying source explicitly establishes a stronger class. Human review remains required where the decision contract says so."
+}

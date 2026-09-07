@@ -1,0 +1,24 @@
+{
+  "package": "MINCO_FLOW_CVaR_RC2",
+  "release_stage": "RC2",
+  "build_date": "2026-09-01",
+  "windows_acceptance": "PENDING_USER_WINDOWS",
+  "members": [
+    "MINCO"
+  ],
+  "sanitizer_excludes": [
+    ".env",
+    ".git",
+    ".venv/venv",
+    "__pycache__",
+    ".pytest_cache",
+    ".coverage",
+    "*.pyc/*.pyo",
+    "nested *.zip"
+  ],
+  "release_candidate": "RC3",
+  "python_target": "3.14",
+  "windows_entrypoint": "RUN_ACCEPTANCE.cmd",
+  "user_command": ".\\RUN_ACCEPTANCE.cmd",
+  "powershell_policy_dependency": false
+}

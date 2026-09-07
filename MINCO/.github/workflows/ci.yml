@@ -1,0 +1,49 @@
+name: MINCO CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.14"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: Install development dependencies
+        run: python -m pip install -e ".[analytics,dev]"
+      - name: Lint
+        run: ruff check src/api src/config src/metrics src/system/run_smoke_pipeline.py tests scripts main.py
+      - name: Test
+        run: pytest --cov=src --cov-report=term-missing
+      - name: Smoke pipeline
+        run: python -m src.system.run_smoke_pipeline
+      - name: Phase 2 backend acceptance
+        run: python -m src.system.run_phase2_backend_acceptance
+      - name: Regenerate public contract registry
+        run: >-
+          python -c "from src.services.contract_registry import build_service_contract_registry;
+          r=build_service_contract_registry(); assert r['schema_count'] == 18; print(r)"
+      - name: Generate release-evidence artifact
+        run: python scripts/generate_release_evidence.py
+      - name: Validate release-evidence attestation
+        run: >-
+          python -c "from src.services.release_evidence_service import ReleaseEvidenceService;
+          p=ReleaseEvidenceService().snapshot();
+          assert p.status == 'VERIFIED';
+          assert p.gates['required_artifacts_hashed'] is True;
+          assert p.human_review_required is True and p.autonomous_execution_permitted is False;
+          print({'status': p.status, 'build_fingerprint': p.build_fingerprint})"
+      - name: Validate release-readiness scorecard
+        run: >-
+          python -c "from src.services.release_readiness_service import ReleaseReadinessService;
+          p=ReleaseReadinessService().snapshot();
+          assert p.release_readiness == 'NOT_FOR_PRODUCTION';
+          assert p.human_review_required is True and p.autonomous_execution_permitted is False;
+          print({'status': p.status, 'blocking_reasons': len(p.blocking_reasons)})"
