@@ -93,7 +93,7 @@ function render(d){{document.getElementById('decisionId').textContent=d.decision
 fetch('/api/evidence').then(r=>r.json()).then(x=>render(x.decision));
 </script></body></html>"""
     bridge = """<script>
-window.__MINCO_API_BASE__=(window.__MINCO_API_BASE__||'https://minco-healthcare-api.onrender.com').replace(/\/$/,'');
+window.__MINCO_API_BASE__=(window.__MINCO_API_BASE__||((location.hostname==='localhost'||location.hostname==='127.0.0.1')?'':'https://minco-healthcare-api.onrender.com')).replace(/\/$/,'');
 const _mincoFetch=window.fetch.bind(window);
 window.fetch=(input,init)=>{const url=typeof input==='string'?input:input.url;return url.startsWith('/api/')?_mincoFetch(window.__MINCO_API_BASE__+url,init):_mincoFetch(input,init)};
 </script>"""
