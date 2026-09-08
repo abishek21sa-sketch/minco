@@ -67,3 +67,6 @@ exclude = ["results", "archive"]
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
 ignore = ["E501"]
+
+[tool.vercel]
+entrypoint = "MINCO.scripts.product_runtime:Handler"
