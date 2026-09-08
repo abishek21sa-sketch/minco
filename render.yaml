@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: minco-healthcare-api
+    runtime: python
+    plan: free
+    buildCommand: pip install ./MINCO
+    startCommand: python MINCO/scripts/product_runtime.py --serve --no-browser
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.14.7
+      - key: MINCO_CORS_ORIGIN
+        value: "*"

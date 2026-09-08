@@ -1,0 +1,5 @@
+{
+  "buildCommand": "pip install ./MINCO && python build_frontend.py",
+  "outputDirectory": "site",
+  "cleanUrls": true
+}
