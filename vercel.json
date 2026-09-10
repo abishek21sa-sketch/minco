@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "pip install --break-system-packages ./MINCO && python build_frontend.py",
+  "buildCommand": "python -m pip install --break-system-packages ./MINCO && python build_frontend.py",
   "outputDirectory": "site",
   "cleanUrls": true
 }
