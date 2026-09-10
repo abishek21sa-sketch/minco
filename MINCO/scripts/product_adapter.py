@@ -1,11 +1,12 @@
 from __future__ import annotations
+import os
 
 from src.decision_math.flow_cvar_decision import build_flow_cvar_decision
 
 PROJECT = "MINCO — Hospital Capacity Operations Workstation"
 ALGORITHM = "FLOW-CVaR"
 SUBTITLE = "Markov patient-flow forecasting, surge capacity, flex staffing, transfer/diversion recourse, and CVaR under correlated demand."
-PORT = 8814
+PORT = int(os.getenv("PORT", "8814"))
 THEME = "minco"
 CONTROLS = [
     {

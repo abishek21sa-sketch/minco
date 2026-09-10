@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 import threading
 import urllib.request
@@ -63,7 +64,7 @@ def _theme_css() -> str:
 
 def _html() -> str:
     controls = json.dumps(CONTROLS)
-    return f"""<!doctype html>
+    page = f"""<!doctype html>
 <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{PROJECT}</title>
 <style>{_theme_css()}
 *{{box-sizing:border-box}} body{{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,Segoe UI,Arial,sans-serif}}
@@ -91,6 +92,12 @@ async function runDecision(){{const q=new URLSearchParams();controls.forEach(c=>
 function render(d){{document.getElementById('decisionId').textContent=d.decision_id;document.getElementById('gate').textContent=d.gate;document.getElementById('metrics').innerHTML=d.metrics.map(x=>`<div class="card"><small>${{esc(x[0])}}</small><strong>${{esc(x[1])}}</strong></div>`).join('');document.getElementById('actions').innerHTML=mkTable(d.actions);document.getElementById('baselines').innerHTML='<table><tbody>'+d.baselines.map(x=>`<tr><th>${{esc(x[0])}}</th><td>${{esc(x[1])}}</td></tr>`).join('')+'</tbody></table>';document.getElementById('claim').textContent=d.claim;document.getElementById('raw').textContent=JSON.stringify(d.raw,null,2)}}
 fetch('/api/evidence').then(r=>r.json()).then(x=>render(x.decision));
 </script></body></html>"""
+    bridge = """<script>
+window.__MINCO_API_BASE__=(window.__MINCO_API_BASE__||((location.hostname==='localhost'||location.hostname==='127.0.0.1')?'':'https://minco-healthcare-api.onrender.com')).replace(/\\/$/,'');
+const _mincoFetch=window.fetch.bind(window);
+window.fetch=(input,init)=>{const url=typeof input==='string'?input:input.url;return url.startsWith('/api/')?_mincoFetch(window.__MINCO_API_BASE__+url,init):_mincoFetch(input,init)};
+</script>"""
+    return page.replace("</head>", bridge + "</head>", 1)
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -98,8 +105,14 @@ class Handler(BaseHTTPRequestHandler):
         self.send_response(code)
         self.send_header("Content-Type", ctype)
         self.send_header("Content-Length", str(len(body)))
+        self.send_header("Access-Control-Allow-Origin", os.getenv("MINCO_CORS_ORIGIN", "*"))
+        self.send_header("Access-Control-Allow-Methods", "GET,OPTIONS")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type,X-Request-ID")
         self.end_headers()
         self.wfile.write(body)
+
+    def do_OPTIONS(self) -> None:
+        self._send(204, b"")
 
     def do_GET(self) -> None:
         p = urlparse(self.path)
@@ -161,8 +174,10 @@ class Handler(BaseHTTPRequestHandler):
 def serve(*, open_browser: bool = True) -> None:
     if not ARTIFACT.exists():
         prepare_demo()
-    server = ThreadingHTTPServer(("127.0.0.1", PORT), Handler)
-    url = f"http://127.0.0.1:{PORT}/"
+    host = os.getenv("HOST", "0.0.0.0")
+    port = int(os.getenv("PORT", str(PORT)))
+    server = ThreadingHTTPServer((host, port), Handler)
+    url = f"http://{host}:{port}/"
     print(f"PRODUCT_RUNTIME_READY={url}", flush=True)
     if open_browser:
         webbrowser.open(url, new=2)

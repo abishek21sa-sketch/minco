@@ -2,6 +2,15 @@
 
 # MINCO — Stochastic Hospital Operations Decision Workstation
 
+## Deployment
+
+Deploy the repository root to Vercel using `vercel.json`; the build generates
+the MINCO decision workstation at `/app`. Deploy the same repository as a
+Render Blueprint, where the runtime binds to `$PORT` and exposes `/health`.
+The Vercel artifact routes its `/api/*` calls to the Render service through a
+configurable browser bridge; all outputs remain synthetic, human-reviewed
+decision support.
+
 MINCO is a computational healthcare-operations system for deciding how a hospital network should respond to uncertain patient flow **before capacity failure occurs**.
 
 It is intentionally not a generic analytics dashboard. The mathematical identity of MINCO is:

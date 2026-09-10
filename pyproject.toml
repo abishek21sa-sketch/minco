@@ -7,7 +7,7 @@ name = "minco-healthcare-decision-intelligence"
 version = "0.8.0a4"
 description = "Healthcare operations decision-intelligence research platform"
 readme = "README.md"
-requires-python = ">=3.14,<3.15"
+requires-python = ">=3.11,<3.15"
 dependencies = [
   "numpy>=1.26,<3",
   "pandas>=2.2,<3",
@@ -67,6 +67,3 @@ exclude = ["results", "archive"]
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
 ignore = ["E501"]
-
-[tool.vercel]
-entrypoint = "MINCO.scripts.product_runtime:Handler"
