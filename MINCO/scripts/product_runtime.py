@@ -28,6 +28,7 @@ from product_adapter import (  # noqa: E402
 )
 
 ARTIFACT = ROOT / "artifacts" / "product_runtime" / "latest_product_evidence.json"
+CMS_FACILITY_CSV = ROOT / "data" / "public_reference" / "cms_hospital_general_information.csv"
 
 
 def prepare_demo() -> dict:
@@ -154,6 +155,15 @@ class Handler(BaseHTTPRequestHandler):
                     encoding="utf-8",
                 )
                 return self._send(200, json.dumps(d, default=str).encode())
+            if p.path == "/api/public-reference":
+                from src.scenarios.public_reference import load_facility_reference
+
+                ref = load_facility_reference(csv_path=CMS_FACILITY_CSV)
+                payload = {
+                    "provenance": ref.provenance,
+                    "facilities": ref.facilities.to_dict("records"),
+                }
+                return self._send(200, json.dumps(payload, default=str).encode())
             if p.path == "/download/evidence.json":
                 payload = (
                     ARTIFACT.read_bytes()
