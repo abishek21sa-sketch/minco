@@ -7,5 +7,5 @@ sys.path.insert(0, str(PROJECT / "scripts"))
 from product_runtime import _html  # noqa: E402
 
 (ROOT / "site").mkdir(parents=True, exist_ok=True)
-(ROOT / "site" / "app.html").write_text(_html(), encoding="utf-8")
+(ROOT / "site" / "index.html").write_text(_html(), encoding="utf-8")
 print("MINCO_FRONTEND_BUILD=PASS")
