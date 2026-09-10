@@ -1,8 +1,6 @@
 from __future__ import annotations
 import os
 
-from src.decision_math.flow_cvar_decision import build_flow_cvar_decision
-
 PROJECT = "MINCO — Hospital Capacity Operations Workstation"
 ALGORITHM = "FLOW-CVaR"
 SUBTITLE = "Markov patient-flow forecasting, surge capacity, flex staffing, transfer/diversion recourse, and CVaR under correlated demand."
@@ -45,6 +43,8 @@ def _fmt(v):
 
 
 def compute(params):
+    from src.decision_math.flow_cvar_decision import build_flow_cvar_decision
+
     raw = build_flow_cvar_decision(
         cvar_alpha=float(params["cvar_alpha"]),
         cvar_weight=float(params["cvar_weight"]),
