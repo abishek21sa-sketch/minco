@@ -24,7 +24,27 @@ jobs:
       - name: Lint
         run: ruff check src/api src/config src/metrics src/system/run_smoke_pipeline.py tests scripts main.py
       - name: Test
-        run: pytest --cov=src --cov-report=term-missing
+        continue-on-error: true
+        run: pytest --cov=src --cov-report=term-missing -rA --tb=short > /tmp/pytest_out.txt 2>&1; echo "PYTEST_EXIT=$?" >> "$GITHUB_ENV"
+      - name: _ci_diagnose (temporary)
+        if: always()
+        run: |
+          python3 - <<'PYEOF'
+          import os
+          text = open("/tmp/pytest_out.txt", encoding="utf-8", errors="replace").read()
+          lines = text.splitlines()
+          tail = lines[-120:]
+          chunk = ""
+          for line in tail:
+              esc = line.replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A')
+              if len(chunk) + len(esc) > 3800:
+                  print(f"::notice::{chunk}")
+                  chunk = ""
+              chunk += esc + "%0A"
+          if chunk:
+              print(f"::notice::{chunk}")
+          PYEOF
+          if [ "${PYTEST_EXIT:-1}" != "0" ]; then exit 1; fi
       - name: Smoke pipeline
         run: python -m src.system.run_smoke_pipeline
       - name: Phase 2 backend acceptance
