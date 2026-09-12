@@ -1,0 +1,12 @@
+[project]
+name = "minco-vercel-root-shim"
+version = "0.0.0"
+requires-python = ">=3.10"
+description = "Marker file only: satisfies Vercel's zero-config Python-project auto-detection at the repo root. The real build is driven entirely by vercel.json's buildCommand, which installs and builds from ./MINCO."
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = []
