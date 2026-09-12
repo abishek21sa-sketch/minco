@@ -16,17 +16,11 @@ def run(*args):
 
 def main():
     py = sys.executable
-    run(
-        py,
-        "-m",
-        "pytest",
-        "tests/phase1/test_flow_cvar_network_signature.py",
-        "tests/phase1/test_flow_cvar_decision.py",
-        "tests/test_flow_cvar_api.py",
-        "tests/test_flow_cvar_ui_contract.py",
-        "tests/test_fixed_first_stage_oracle.py",
-        "-q",
+    test_files = sorted(
+        str(p.relative_to(ROOT)).replace("\\", "/")
+        for p in (ROOT / "tests").rglob("test_*.py")
     )
+    run(py, "-m", "pytest", *test_files, "-q")
     run(py, "scripts/flow_cvar_signature_evidence.py")
     run(py, "scripts/flow_cvar_product_evidence.py")
     run(

@@ -1,9 +1,0 @@
-.git
-.venv
-__pycache__
-*.pyc
-results/ai_models
-results/**/*.pkl
-results/**/*.png
-archive
-notebooks

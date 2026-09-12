@@ -1,7 +1,0 @@
-hospital_id,resource,max_surge
-H1,ICU,8
-H1,Ward,20
-H2,ICU,5
-H2,Ward,12
-H3,ICU,2
-H3,Ward,8

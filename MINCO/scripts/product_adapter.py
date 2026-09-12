@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 import os
 
 PROJECT = "MINCO — Hospital Capacity Operations Workstation"

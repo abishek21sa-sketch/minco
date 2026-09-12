@@ -10,6 +10,9 @@ jobs:
     strategy:
       matrix:
         python-version: ["3.14"]
+    defaults:
+      run:
+        working-directory: MINCO
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

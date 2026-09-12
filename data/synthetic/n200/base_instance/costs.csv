@@ -1,8 +1,0 @@
-cost_name,value
-overflow_icu,1000
-overflow_ward,400
-unsafe_util_icu,250
-unsafe_util_ward,100
-transfer,20
-surge_bed,100
-elective_rejection,10
