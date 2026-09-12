@@ -5,6 +5,14 @@ from pathlib import Path
 import numpy as np
 import pytest
 
+# QLearningAgent's module transitively imports HospitalRLEnv -> policy_baselines
+# -> gurobipy for its training/rollout helpers, even though the agent's own
+# core logic (exercised below) never touches Gurobi. Skip the whole module
+# cleanly wherever the licensed solver isn't installed, matching the pattern
+# already used by test_optimizer_small.py / test_optimizer_regression.py /
+# test_optimization_sensitivity.py.
+pytest.importorskip("gurobipy")
+
 from src.rl.q_learning_agent import QLearningAgent
 
 ACTIONS = ["local_only", "myopic_milp", "optimized_network"]
